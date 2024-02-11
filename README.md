@@ -33,7 +33,7 @@ eval "$(pyenv init --path)"
 	poetry install
 
 ### 5. Install docker && docker-compose
-	brew intall docker-compose
+	brew install docker-compose
 
 ### 6. Run
 	make run
