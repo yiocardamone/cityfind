@@ -26,6 +26,7 @@ eval "$(pyenv init --path)"
     pyenv install 3.11
     pyenv shell 3.11
 	which python3
+ 	#Move to project directory and insert python location to bottom line:
 	poetry env use ***
 
 ### 4. Install dependencies
