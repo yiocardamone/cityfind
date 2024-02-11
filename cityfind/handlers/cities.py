@@ -2,7 +2,7 @@ import logging
 from typing import Mapping
 from typing import TypeVar
 
-from aiohttp import web
+from aiohttp import web, ClientResponseError
 from aiohttp.web_exceptions import HTTPBadRequest
 from aiohttp.web_exceptions import HTTPNotFound
 from pydantic import BaseModel
@@ -40,7 +40,6 @@ class CitiesHandler:
         except DatabaseNotFoundError as e:
             logging.info(e)
             raise HTTPNotFound
-
         return web.Response(text=",".join(result))
 
     async def get_city_by_name(self, request: web.Request) -> web.Response:
@@ -66,6 +65,9 @@ class CitiesHandler:
         except GeoCoderNotFoundError as e:
             logging.info(e)
             raise HTTPNotFound
+        except ClientResponseError as e:
+            logging.error(f"Check API KEY: {e}")
+            return web.Response(text=e.message, status=e.status)
 
         await self.__database.add_city(city)
         return web.Response(text="Created", status=201)

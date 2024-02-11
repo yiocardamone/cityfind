@@ -23,7 +23,7 @@ class Database:
 
     async def get_city_by_name(self, name: str) -> City:
         positions = await self.__redis.geopos(_GEOSET, name)
-        if not positions:
+        if not positions or positions[0] is None:
             raise DatabaseNotFoundError()
 
         lat, lon = positions.pop()
@@ -39,8 +39,8 @@ class Database:
     ) -> set[str]:
         radius = _MIN_RADIUS
         result: set = set()
-        while radius <= _MAX_RADIUS or len(result) >= _MAX_RESULT:
-            radius **= 2
+        while radius < _MAX_RADIUS and len(result) <= _MAX_RESULT:
+            radius = min(radius ** 2, _MAX_RADIUS)
             names = await self.__redis.georadius(
                 _GEOSET,
                 coordinate.latitude,
@@ -61,10 +61,7 @@ class Database:
             city.coordinate.longitude,
             city.name,
         )
-        try:
-            await self.__redis.geoadd(_GEOSET, values)
-        except Exception as e:
-            logging.info(e)
+        await self.__redis.geoadd(_GEOSET, values)
 
     async def delete_city_by_name(self, name: str) -> None:
         await self.__redis.zrem(_GEOSET, name)

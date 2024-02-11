@@ -55,11 +55,8 @@ class _GeocodeMaps(_IGeoCoderBase):
             async with session.get(route) as response:
                 response.raise_for_status()
                 data = await response.json()
-                try:
-                    coordinate_list = _CoordinateList(data)
-                except Exception as e:
-                    logging.info(e)
-                if not coordinate_list:
+                coordinate_list = _CoordinateList(data)
+                if not coordinate_list.root:
                     raise GeoCoderNotFoundError
 
         coordinate = coordinate_list.root.pop()
