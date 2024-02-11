@@ -11,4 +11,4 @@ redis:
   port: 6379
 
 geo_coders:
-  - {name: geocode_maps, key: 65c8da11b5cbf382011639tfw0acb51}
+  - {name: geocode_maps, key: INSERT_API_KEY_HERE}
