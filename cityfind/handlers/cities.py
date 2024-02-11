@@ -2,7 +2,8 @@ import logging
 from typing import Mapping
 from typing import TypeVar
 
-from aiohttp import web, ClientResponseError
+from aiohttp import ClientResponseError
+from aiohttp import web
 from aiohttp.web_exceptions import HTTPBadRequest
 from aiohttp.web_exceptions import HTTPNotFound
 from pydantic import BaseModel

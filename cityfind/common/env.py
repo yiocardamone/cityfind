@@ -9,7 +9,7 @@ class EnvironmentVariable(Enum):
 
 _DEFAULTS = {
     EnvironmentVariable.CONFIG_RELATIVE_PATH.value: "configs/config.yaml",
-    EnvironmentVariable.LOGGING_RELATIVE_PATH.value: "configs/logging.ini"
+    EnvironmentVariable.LOGGING_RELATIVE_PATH.value: "configs/logging.ini",
 }
 
 

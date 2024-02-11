@@ -1,5 +1,3 @@
-import logging
-
 from pydantic_extra_types.coordinate import Coordinate
 from pydantic_extra_types.coordinate import Latitude
 from pydantic_extra_types.coordinate import Longitude
@@ -40,7 +38,7 @@ class Database:
         radius = _MIN_RADIUS
         result: set = set()
         while radius < _MAX_RADIUS and len(result) <= _MAX_RESULT:
-            radius = min(radius ** 2, _MAX_RADIUS)
+            radius = min(radius**2, _MAX_RADIUS)
             names = await self.__redis.georadius(
                 _GEOSET,
                 coordinate.latitude,

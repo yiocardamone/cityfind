@@ -1,5 +1,4 @@
 from pydantic import BaseModel
-from pydantic import RootModel
 from pydantic_extra_types.coordinate import Coordinate
 
 
