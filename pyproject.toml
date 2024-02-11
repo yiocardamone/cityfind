@@ -1,0 +1,34 @@
+[tool.poetry]
+name = "cityfind"
+version = "0.0.1"
+description = "Simple API for find cities by lat/lon"
+authors = ["Olshansky"]
+readme = "README.md"
+packages = [{include = "cityfind"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+aiohttp = "^3.9.3"
+mypy = "^1.8.0"
+black = "^24.1.1"
+isort = "^5.13.2"
+pyyaml = "^6.0.1"
+pydantic = "^2.6.1"
+flake8 = "^7.0.0"
+types-pyyaml = "^6.0.12.12"
+redis = "^5.0.1"
+pydantic-extra-types = "^2.5.0"
+retry = "^0.9.2"
+uvloop = "^0.19.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+force_single_line = true
+line_length = 79
+include_trailing_comma = true
+
+[tool.black]
+line_length = 79

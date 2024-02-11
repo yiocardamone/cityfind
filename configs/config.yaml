@@ -1,0 +1,14 @@
+server:
+  host: 127.0.0.1
+  port: 8000
+
+logger:
+  config_file: ./logging.ini
+  logs_path: ./logs
+
+redis:
+  host: 127.0.0.1
+  port: 6379
+
+geo_coders:
+  - {name: geocode_maps, key: 65c8da11b5cbf382011639tfw0acb51}
